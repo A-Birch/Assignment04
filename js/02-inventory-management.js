@@ -23,6 +23,7 @@ function displayMenu() {
 }
 
 function validate(skuNumber) {
+    "use strict";
     var i;
 
     if (isNaN(skuNumber) || skuNumber === null) {
@@ -42,16 +43,6 @@ function validate(skuNumber) {
 
 function show(inventory) {
     "use strict";
-/*    //If there are no tasks in the array
-    //Check the storage object
-    if (inventory.length === 0) {
-        storage = localStorage.getItem("inventory") || "";
-        //If the storage object contains tasks
-        //Repopulate the tasks array
-        if (storage.length > 0) {
-            inventory = storage.split("|");
-        }
-    } */
     window.console.log("");
     inventory.sort();
     inventory.forEach(function(product) {
@@ -88,10 +79,10 @@ function main() {
     var command;
     var i;
     storage = localStorage.getItem("inventory");
-    storage = storage.split("|");
-    if (storage.length === 0) {
+    if (storage === null) {
         localStorage.inventory = inventory;
     } else {
+        storage = storage.split("|");
         for (i=0; i < storage.length; i++) {
             storage[i] = storage[i].split(",");
 
